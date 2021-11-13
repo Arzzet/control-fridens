@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlashMessagesService } from 'angular2-flash-messages';
 import { Friden } from 'src/app/modelo/friden.model';
 import { FridenService } from 'src/app/servicios/friden.service';
 
@@ -10,8 +11,14 @@ import { FridenService } from 'src/app/servicios/friden.service';
 export class FridensComponent implements OnInit {
 
   fridens: Friden[];
+  friden: Friden ={
+    nombre: '',
+    apellido: '',
+    email: '',
+    saldo: 0
+  }
 
-  constructor(private fridenService: FridenService) { }
+  constructor(private fridenService: FridenService, private flashMessages: FlashMessagesService) { }
 
   ngOnInit(): void {
     this.fridenService.getFridens().subscribe(fridens => {
@@ -27,5 +34,17 @@ export class FridensComponent implements OnInit {
       })
     }
     return saldoTotal;
+  }
+  
+  agregar({value, valid}: {value: Friden, valid: boolean}) {
+    if(!valid) {
+      this.flashMessages.show('Rellena el formulario correctamente, pavo', {
+      cssClass: 'alert-danger', timeout: 4000
+      });
+    } else {
+      // Agregamos nuevo friden
+
+    }
+
   }
 }

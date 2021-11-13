@@ -70,7 +70,7 @@
 
 <!--Agregar friden modal-->
 <div class="modal fade" id="agregarFridenModal">
-    <div class="modal-dialog modl-lg">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
                 <h5 class="modal-title">Agregar Friden</h5>
@@ -79,23 +79,88 @@
                 </button>
             </div>
 
-            <form action="">
+            <flash-messages></flash-messages>
+
+            <form #fridenForm="ngForm" (ngSubmit)="agregar(fridenForm)">
                 <div class="modal-body">
+                    <!--Input nombre-->
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
+                        <input type="text" 
+                        class="form-control" 
+                        name="nombre" 
+                        id="nombre"
+                        placeholder="Nombre"
+                        #nombre="ngModel"
+                        [(ngModel)]="friden.nombre"
+                        [ngClass]="{'is-invalid': nombre.errors && nombre.touched}"
+                        required
+                        minlength="2">
+                        <div [hidden]="!nombre.errors?.required" class="invalid-feedback">
+                            Nombre Requerido
+                        </div>
+                        <div [hidden]="!nombre.errors?.minlength" class="invalid-feedback">
+                            Debe contener al menos 2 caracteres
+                        </div>
                     </div>
+                    <!--Input apellido-->
                     <div class="form-group">
                         <label for="apellido">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido">
+                        <input type="text" 
+                        class="form-control" 
+                        id="apellido" 
+                        name="apellido" 
+                        placeholder="Apellido"
+                        #apellido="ngModel"
+                        [(ngModel)]="friden.apellido"
+                        [ngClass]="{'is-invalid': apellido.errors && apellido.touched}"
+                        required
+                        minlength="2">
+                        <div [hidden]="!apellido.errors?.required" class="invalid-feedback">
+                            Apellido Requerido
+                        </div>
+                        <div [hidden]="!apellido.errors?.minlength" class="invalid-feedback">
+                            Debe contener al menos 2 caracteres
+                        </div>>
                     </div>
+                    <!--Input email-->
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                        <input type="text" 
+                        class="form-control" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Email"
+                        #email="ngModel"
+                        [(ngModel)]="friden.email"
+                        [ngClass]="{'is-invalid': email.errors && email.touched}"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                        required>
+                        <div [hidden]="!email.errors?.required" class="invalid-feedback">
+                            Email Requerido
+                        </div>
+                        <div [hidden]="!email.errors?.pattern" class="invalid-feedback">
+                            Email no es valido
+                        </div>>
                     </div>
+                    <!--Input saldo-->
                     <div class="form-group">
                         <label for="saldo">Saldo</label>
-                        <input type="text" class="form-control" id="saldo" name="saldo" placeholder="Saldo">
+                        <input type="text" 
+                        class="form-control" 
+                        id="saldo" 
+                        name="saldo" 
+                        placeholder="Saldo"
+                        #saldo="ngModel"
+                        [(ngModel)]="friden.saldo"
+                        [ngClass]="{'is-invalid': saldo.errors && saldo.touched}"
+                        required>
+                        <div [hidden]="!saldo.errors?.required" class="invalid-feedback">
+                            Saldo Requerido
+                        </div>
+                        <div [hidden]="!saldo.errors?.minlength" class="invalid-feedback">
+                            Debe contener al menos 2 caracteres
+                        </div>>
                     </div>
                 </div>
                 <div class="modal-footer">
