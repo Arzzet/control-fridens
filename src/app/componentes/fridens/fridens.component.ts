@@ -19,4 +19,13 @@ export class FridensComponent implements OnInit {
     })
   }
 
+  getSaldoTotal() {
+    let saldoTotal: number = 0;
+    if(this.fridens) {
+      this.fridens.forEach(friden => {
+      saldoTotal += friden.saldo;
+      })
+    }
+    return saldoTotal;
+  }
 }
