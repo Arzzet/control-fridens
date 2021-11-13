@@ -1,1 +1,63 @@
-<p>fridens works!</p>
+<!-- Botones -->
+<section id="actions" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarFridenModal">
+                    <i class="fas" fa-plus></i> Agregar Friden
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!--Listado Fridens-->
+<section id="fridens">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Lostado de Fridens</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let friden of fridens; let i = index">
+                                <td>{{i + 1}}</td>
+                                <td>{{friden.nombre}} {{friden.apellido}}</td>
+                                <td>{{friden.saldo | currency: 'EUR': '€'}}</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Juan</td>
+                                <td>$10</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Pedro</td>
+                                <td>$20</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Juan</td>
+                                <td>$10</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Pedro</td>
+                                <td>$20</td>
+                            </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

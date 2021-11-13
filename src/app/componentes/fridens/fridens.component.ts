@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Friden } from 'src/app/modelo/friden.model';
+import { FridenService } from 'src/app/servicios/friden.service';
 
 @Component({
   selector: 'app-fridens',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FridensComponent implements OnInit {
 
-  constructor() { }
+  fridens: Friden[];
+
+  constructor(private fridenService: FridenService) { }
 
   ngOnInit(): void {
+    this.fridenService.getFridens().subscribe(fridens => {
+      this.fridens = fridens;
+    })
   }
 
 }
