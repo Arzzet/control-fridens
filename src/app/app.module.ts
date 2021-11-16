@@ -24,6 +24,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { FridenService } from './servicios/friden.service';
 import { LoginService } from './servicios/login.service';
 import { AuthGuard } from './guardians/auth.guard';
+import { ConfiguracionService } from './servicios/configuracion.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,12 @@ import { AuthGuard } from './guardians/auth.guard';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [FridenService, LoginService, AuthGuard],
+  providers: [FridenService, 
+    LoginService, 
+    AuthGuard, 
+    ConfiguracionService,
+    { provide: SETTINGS, useValue: {} }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

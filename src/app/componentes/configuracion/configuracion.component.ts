@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Configuracion } from 'src/app/modelo/configuracion.model';
+import { ConfiguracionService } from 'src/app/servicios/configuracion.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfiguracionComponent implements OnInit {
 
-  constructor() { }
+  pemitirRegistro = false;
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private configuracionService: ConfiguracionService
+  ) { }
+  
+
+  ngOnInit(){
+    this.configuracionService.getConfiguracion().subscribe(
+      (configuracion: Configuracion) => {
+      this.pemitirRegistro = configuracion.permitirRegistro;
+    })
+  }
+
+  guardar(){
+    let configuracion = {permitirRegistro: this.pemitirRegistro};
+    this.configuracionService.modificarConfiguracion(configuracion);
+    this.router.navigate(['/']);
+
   }
 
 }
