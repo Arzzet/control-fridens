@@ -29,6 +29,31 @@ export class FridenService {
     }
     
     agregarFriden(value: Friden) {
-      this.fridensCollection.add(value);
+        this.fridensCollection.add(value);
+    }
+    
+    modificarFriden(friden: Friden) {
+      this.fridenDoc = this.db.doc(`fridens/${friden.id}`);
+      this.fridenDoc.update(friden);
+    }
+    
+    eliminarFriden(friden: Friden) {
+        this.fridenDoc = this.db.doc(`fridens/${friden.id}`);
+        this.fridenDoc.delete();
+    }
+
+    getFriden(id: string) {
+        this.fridenDoc = this.db.doc<Friden>(`fridens/${id}`);
+        this.friden = this.fridenDoc.snapshotChanges().pipe(map(accion => {
+            if (accion.payload.exists === false) {
+                return null;
+            } else {
+                const data = accion.payload.data() as Friden;
+                data.id = accion.payload.id;
+                return data;
+            }
+        })
+    );
+        return this.friden;
     }
 }
