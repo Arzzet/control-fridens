@@ -1,22 +1,23 @@
-
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
     <div class="container-fluid">
-      <a routerLink="/" class="navbar-brand" href="#">Control Fridens</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <a routerLink="/" class="navbar-brand" href="#">Control Fridens</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul *ngIf="isLoggedIn" class="navbar-nav ms-auto">
             <li class="nav-item px-2">
                 <a routerLink="/" class="nav-link" aria-current="page" href="#">Inicio</a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown mr-3">
+
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown ms-3">
                 <a class="nav-link dropdown-toggle" aria-current="page" href="#" data-bs-toggle="dropdown">
-                    <i class="fas fa-user"></i> Bienvenido
+                    <i class="fas fa-user"></i> Bienvenido {{loggedInUser}}
                 </a>
                 <div class="dropdown-menu">
                     <a routerLink="/configuracion" class="dropdown-item" data-bs-toggle="dropdown">
@@ -25,7 +26,17 @@
                 </div>
             </li>
         </ul>
-    
-        
+        <ul class="navbar-nav me-auto">
+            <li *ngIf="!isLoggedIn" class="nav-item">
+                <a routerLink="/login" class="nav-link">
+                    <i class="fas fa-user"></i> Login
+                </a>
+            </li>
+            <li *ngIf="isLoggedIn" class="nav-item">
+                <a style="cursor: pointer" (click)="logout() "class="nav-link">
+                    <i class="fas fa-user-times"></i><span> Salir</span>
+                </a>
+            </li>
+        </ul>
     </div>
-  </nav>
+</nav>

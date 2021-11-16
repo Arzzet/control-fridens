@@ -22,6 +22,7 @@ import { ConfiguracionComponent } from './componentes/configuracion/configuracio
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { FridenService } from './servicios/friden.service';
+import { LoginService } from './servicios/login.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { FridenService } from './servicios/friden.service';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [FridenService],
+  providers: [FridenService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
