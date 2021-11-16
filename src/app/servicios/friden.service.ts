@@ -10,11 +10,11 @@ export class FridenService {
     fridenDoc: AngularFirestoreDocument<Friden>;
     fridens: Observable<Friden[]>;
     friden: Observable<Friden>;
-
+    
     constructor(private db: AngularFirestore) {
         this.fridensCollection = this.db.collection<Friden>('fridens', ref => ref.orderBy('nombre', 'asc'));
     }
-
+    
     getFridens(): Observable<Friden[]> {
         // Obtener la colección de fridens
         this.fridens = this.fridensCollection.snapshotChanges().pipe(map(cambios => {
@@ -27,5 +27,8 @@ export class FridenService {
         );
         return this.fridens;
     }
-
+    
+    agregarFriden(value: Friden) {
+      this.fridensCollection.add(value);
+    }
 }

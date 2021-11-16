@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Friden } from 'src/app/modelo/friden.model';
 import { FridenService } from 'src/app/servicios/friden.service';
@@ -17,6 +18,9 @@ export class FridensComponent implements OnInit {
     email: '',
     saldo: 0
   }
+
+  @ViewChild("fridenForm") fridenForm: NgForm;
+  @ViewChild("botonCerrar") botonCerrar: ElementRef;
 
   constructor(private fridenService: FridenService, private flashMessages: FlashMessagesService) { }
 
@@ -42,9 +46,17 @@ export class FridensComponent implements OnInit {
       cssClass: 'alert-danger', timeout: 4000
       });
     } else {
-      // Agregamos nuevo friden
+      this.fridenService.agregarFriden(value);
+      this.fridenForm.resetForm();
+      this.cerrarModal();
+      
+
 
     }
 
+  }
+
+  private cerrarModal() {
+    this.botonCerrar.nativeElement.click();
   }
 }

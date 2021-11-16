@@ -19,7 +19,7 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Lostado de Fridens</h4>
+                        <h4>Listado de Fridens</h4>
                     </div>
                     <table class="table table-striped">
                         <thead class="table-dark">
@@ -74,7 +74,7 @@
         <div class="modal-content">
             <div class="modal-header bg-info text-white">
                 <h5 class="modal-title">Agregar Friden</h5>
-                <button class="close" data-bs-dismiss="modal">
+                <button class="close" data-bs-dismiss="modal" #botonCerrar>
                     <span>&times;</span>
                 </button>
             </div>
@@ -121,7 +121,7 @@
                         </div>
                         <div [hidden]="!apellido.errors?.minlength" class="invalid-feedback">
                             Debe contener al menos 2 caracteres
-                        </div>>
+                        </div>
                     </div>
                     <!--Input email-->
                     <div class="form-group">
@@ -141,7 +141,7 @@
                         </div>
                         <div [hidden]="!email.errors?.pattern" class="invalid-feedback">
                             Email no es valido
-                        </div>>
+                        </div>
                     </div>
                     <!--Input saldo-->
                     <div class="form-group">
@@ -160,7 +160,7 @@
                         </div>
                         <div [hidden]="!saldo.errors?.minlength" class="invalid-feedback">
                             Debe contener al menos 2 caracteres
-                        </div>>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
