@@ -23,6 +23,7 @@ import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { FridenService } from './servicios/friden.service';
 import { LoginService } from './servicios/login.service';
+import { AuthGuard } from './guardians/auth.guard';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { LoginService } from './servicios/login.service';
     FormsModule,
     FlashMessagesModule.forRoot(),
   ],
-  providers: [FridenService, LoginService],
+  providers: [FridenService, LoginService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
