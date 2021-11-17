@@ -25,6 +25,7 @@ import { FridenService } from './servicios/friden.service';
 import { LoginService } from './servicios/login.service';
 import { AuthGuard } from './guardians/auth.guard';
 import { ConfiguracionService } from './servicios/configuracion.service';
+import { ConfigurationGuard } from './guardians/configuration.guard';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ConfiguracionService } from './servicios/configuracion.service';
     LoginService, 
     AuthGuard, 
     ConfiguracionService,
+    ConfigurationGuard,
     { provide: SETTINGS, useValue: {} }
   ],
   bootstrap: [AppComponent]

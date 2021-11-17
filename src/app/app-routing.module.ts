@@ -7,11 +7,12 @@ import { LoginComponent } from './componentes/login/login.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { AuthGuard } from './guardians/auth.guard';
+import { ConfigurationGuard } from './guardians/configuration.guard';
 
 const routes: Routes = [
   {path: '', component: BoardComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'registrarse', component: RegistroComponent},
+  {path: 'registrarse', component: RegistroComponent, canActivate: [ConfigurationGuard]},
   {path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuard]},
   {path: 'friden/editar/:id', component: EditarFridenComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent},
